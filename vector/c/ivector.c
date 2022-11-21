@@ -65,8 +65,11 @@ bool shrink(__VEC_TYPENAME *vec)
 void remove_elem(__VEC_TYPENAME *vec, size_t index)
 {
     if (index < vec->size - 1)
-        for (size_t i = index; i < vec->size - 1; i++)
-            vec->data[i] = vec->data[i + 1];
+    {
+        memmove(vec->data + index, vec->data + index + 1, VSIZEOF(vec->size - index - 1));
+    }
+    // for (size_t i = index; i < vec->size - 1; i++)
+    //     vec->data[i] = vec->data[i + 1];
     vec->size--;
 }
 
